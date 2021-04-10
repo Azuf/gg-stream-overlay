@@ -1,4 +1,4 @@
-# SOS-WS-Relay   
+# Instructions   
   1. `npm install`
   2. start bakkesmod & and Rocket league with SOS loaded
   3. Run with `node "./ws-relay.js"`
