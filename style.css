@@ -1,0 +1,94 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0;
+    font-size: 25px;
+    font-family: monospace;
+}
+#score-board {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    display: grid;
+    grid-gap: 20px;
+    grid-template: 40px 40px / 40px auto auto;
+    padding: 10px;
+}
+#score-board .logo {
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+    background-position: center ;
+}
+#score-board .name, #score-board .score {
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 40px;
+}
+#score-board .score {
+    border: 2px solid black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+#active-player-info {
+    position: fixed;
+    bottom: 60px;
+    left: 60px;
+    min-width: 350px;
+    /* use a little transparency here */
+    background-color: #ffffffcc; 
+}
+#active-player-info .name {
+    font-size: 45px;
+    text-align: center;
+    line-height: 75px;
+}
+#active-player-info .stats {
+    display: flex;
+}
+#active-player-info .stat {
+    border: 1px solid red;
+    height: 80px;
+    width: 90px;
+    padding: 5px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+#active-player-info .stats .title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+#active-player-info .stats .value {
+    text-align: center;
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: bolder;
+}
+#active-player-info .goals { 
+
+}
+#active-player-info .shots {
+
+}
+#active-player-info .assits {
+
+}
+#active-player-info .saves {
+
+}
+#active-player-info .boost {
+    background-color: #555;
+}
+#active-player-info .boost .bar {
+    width: 0;
+    background-color: crimson;
+    color: yellow;
+    text-align: center;
+    height: 20px;
+    transition: width .2s ease-out;
+}
+

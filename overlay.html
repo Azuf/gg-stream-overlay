@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <section id="score-board">
+            <div class="team-one">
+                <div class="logo" style="background-image: url(/img/autobots.jpg);"></div>
+                <div class="name">Autobots</div>
+                <div class="score-one score"></div>
+            </div>
+            <div class="team-two">
+                <div class="logo" style="background-image: url(/img/decepticons.png);"></div>
+                <div class="name">Decepticons</div>
+                <div class="score-two score"></div>
+            </div>
+        </section>
+        <section id="active-player-info">
+            <div class="name"></div>
+            <div class="stats">
+                <div class="stat score">
+                    <div class="title">score</div>
+                    <div class="value">10000</div>
+                </div>     
+                <div class="stat goals">
+                    <div class="title">goals</div>
+                    <div class="value">0</div>
+                </div>     
+                <div class="stat shots">
+                    <div class="title">shots</div>
+                    <div class="value">0</div>
+                </div>     
+                <div class="stat assists">
+                    <div class="title">assists</div>
+                    <div class="value">0</div>
+                </div>
+                <div class="stat saves">
+                    <div class="title">saves</div>
+                    <div class="value">0</div>
+                </div>    
+            </div>     
+            <div class="boost"><div class="bar"></div></div> 
+        </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/relay_subsriber.js"></script>
+        <script>
+            // game:initialized                 
+            //// Times ////
+            // game:round_started_go            // round began    
+            // game:pre_countdown_begin         // 3. 2. 1.. on game start or after every goal 
+            // game:post_countdown_begin        
+            // game:match_ended
+            // game:podium_start
+            
+            //// Time tracking ////
+            // game:clock_stopped               
+            // game:clock_started               
+            // game:clock_updated_seconds
+            
+            //// Events ////
+            // game:ball_hit
+            // game:goal_scored
+            // game:replay_start
+            // game:replay_end
+            // game:clock_stopped
+            // game:statfeed_event
+            // game:update_state
+            // game:match_destroyed
+
+            //// ELEMENTS START ////
+            let score_one = $('#score-board .score-one');
+            let score_two = $('#score-board .score-two');
+            
+            let active_player_elem = $('#active-player-info'); 
+            let active_name_val = $('#active-player-info .name');
+            let active_score_val = $('#active-player-info .score .value');
+            let active_goals_val = $('#active-player-info .goals .value');
+            let active_shots_val = $('#active-player-info .shots .value');
+            let active_assists_val = $('#active-player-info .assists .value');
+            let active_saves_val = $('#active-player-info .saves .value');
+            let active_boost_bar = $('#active-player-info .boost .bar');
+            //// ELEMENTS END ////
+
+            let ActivePlayer = {};
+
+            $(() => {
+                // connect
+                WsSubscribers.init(49322, true);
+
+                // main game stats
+                WsSubscribers.subscribe("game", "update_state", (e) => {
+                    let active_target = e.game.target;
+                    if(active_target.length > 0) { // display active target data if this is present...
+                        ActivePlayer = e.players[e.game.target];
+                        DisplayActivePlayerInfo();
+                    } else { // ...otherwise hide it
+                        active_player_elem.hide();
+                    }
+                    console.log(e.game.target);
+                    score_one.html(e.game.teams[0].score);
+                    score_two.text(e.game.teams[1].score);
+                });
+            });
+
+            function DisplayActivePlayerInfo() {
+                if($.isEmptyObject(ActivePlayer)) return; // just in case
+                
+                active_player_elem.show();
+                
+                active_name_val.text(ActivePlayer.name);
+                active_goals_val.text(ActivePlayer.goals);
+                active_shots_val.text(ActivePlayer.shots);
+                active_score_val.text(ActivePlayer.score);
+                active_assists_val.text(ActivePlayer.assists);
+                active_saves_val.text(ActivePlayer.saves);
+                active_boost_bar.css('width', `${ActivePlayer.boost}%`); 
+                active_boost_bar.css('filter', `hue-rotate(${275*(1 - (ActivePlayer.boost/100))}deg)`); 
+                active_boost_bar.text(`${ActivePlayer.speed}mph`); 
+            }
+       </script>
+    </body>
+</html>
