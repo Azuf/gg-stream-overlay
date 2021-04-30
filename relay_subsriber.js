@@ -5,7 +5,7 @@ const WsSubscribers = {
     registerQueue: [],
     init: function(port, debug, debugFilters) {
         port = port || 49322;
-        debug = debug || false;
+        debug = false;
         if (debug) {
             if (debugFilters !== undefined) {
                 console.warn("WebSocket Debug Mode enabled with filtering. Only events not in the filter list will be dumped");

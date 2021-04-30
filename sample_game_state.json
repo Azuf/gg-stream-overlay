@@ -1,0 +1,68 @@
+event: "gamestate"
+game:
+    arena: "cs_p"
+    ball:
+        location:
+            X: 3969.552734375
+            Y: 3806.25732421875
+            Z: 614.457763671875
+        speed: 14
+        team: 1
+    hasTarget: true         
+    hasWinner: false
+    isOT: false
+    isReplay: false
+    target: "Samara_6"                                      // active player in spectator mode
+    teams: Array(2)
+        0:
+            color_primary: "EAFF59"
+            color_secondary: "E5E5E5"
+            name: "BLUE"
+            score: 0
+        1:
+            color_primary: "E57FFF"
+            color_secondary: "E5E5E5"
+            name: "ORANGE"
+            score: 2
+    length: 2
+        time: 232.58433532714844
+        winner: ""
+    hasGame: true
+    match_guid: "E452BF0C11EBA8F397F09EBABA7C9F3F"
+players:
+    Chipper_2:
+        assists: 0
+        attacker: ""
+        boost: 0
+        cartouches: 9
+        demos: 0
+        goals: 0
+        hasCar: true
+        id: "Chipper_2"
+        isDead: false
+        isPowersliding: false
+        isSonic: false
+        location:
+            X: 3610.65576171875
+            Y: 2962.357177734375
+            Z: 17.010000228881836
+            pitch: -100
+            roll: 1
+            yaw: 9867
+        __proto__: Object
+        name: "Chipper"
+        onGround: true
+        onWall: false
+        primaryID: "0"
+        saves: 0
+        score: 0
+        shortcut: 2
+        shots: 0
+        speed: 51
+        team: 0
+        touches: 6
+    Hound_5: {assists: 0, attacker: "", boost: 98, cartouches: 10, demos: 0, …}
+    Marley_3: {assists: 0, attacker: "", boost: 98, cartouches: 5, demos: 0, …}
+    Samara_6: {assists: 0, attacker: "", boost: 0, cartouches: 12, demos: 0, …}
+    Stinger_1: {assists: 0, attacker: "", boost: 100, cartouches: 24, demos: 0, …}
+    Sundown_7: {assists: 1, attacker: "", boost: 100, cartouches: 8, demos: 0, …}
